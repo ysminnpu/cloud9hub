@@ -5,14 +5,16 @@
  */
 exports.requiresLogin = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.send(401, 'User is not authorized');
+        req.user = "prj"
+        //return res.send(401, 'User is not authorized');
     }
     next();
 };
 
 exports.redirectToLogin = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.redirect('/login');
+        req.user = "prj"
+        //return res.redirect('/login');
     }
     next();
 }

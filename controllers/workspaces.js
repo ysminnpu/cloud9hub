@@ -23,7 +23,7 @@ var createWorkspace = function(params, req, res) {
       respondInvalidWorkspace(res);
       return;
     }
-
+    fs.createReadStream(__dirname + '/../workspaces/Makefile.tmpl').pipe(fs.createWriteStream(__dirname + '/../workspaces/' + req.user + "/" + workspaceName + '/Makefile'));
     res.json({msg: "Workspace " + workspaceName + " was created."});
   });
 }

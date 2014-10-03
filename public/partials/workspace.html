@@ -1,7 +1,11 @@
 <div class='row dashboard-row'>
-    <aside class='col-xs-4 col-sm-3 col-md-3'>
+    <aside style="width:18%;float:left" ng-show="menuState">
       <p class="centered">
-        <h1 class='bello'>Cloud9Hub</h1>
+      <span class='bello'>Project Center</span>
+      <!--button class="btn btn-primary pull-right" ng-click="blankWorkspace()">
+          <span class="fui-arrow-left"></span>
+     </button-->
+
         <button class="btn btn-block btn-lg btn-primary" ng-click="blankWorkspace()"><i class='fa fa-plus'></i>&nbsp;Create workspace</button>
       </p>
       <ul class="menu-list">
@@ -11,10 +15,16 @@
         </li>
       </ul>
     </aside>
-    <div class="col-xs-8 col-sm-9 col-md-9 workspace-wrapper">
+    <div class="slide" ng-click="toggleMenu()">
+      <span class="fui-arrow-left" ng-show="menuState"></span>
+      <span class="fui-arrow-right" ng-show="!menuState"></span>
+    </div>
+
+    <div ng-class="{'slide-right': menuState,'sliding': !menuState}" 
+      class="workspace-wrapper">
         <section class='no-workspace' ng-show="!currentWorkspace">
             <div class="block">
-              Welcome to Cloud9Hub.<br/>
+              Welcome to Project Center.<br/>
               This part of the screen is the <span class="hint">editor panel.</span><br/>
               When you run a workspace, it will be started here.
             </div>
@@ -36,6 +46,7 @@
             </header>
             <section class="workspace-bar" ng-hide="!currentWorkspace.url">
                 <a ng-click="startEditing()" class="btn btn-success">Start Editing</a>
+                <a ng-click="startEditingInPlace()" class="btn btn-success">Start Editing (in place)</a>
             </section>
             <section class='workspace-form'>
                 <div class="form-group">

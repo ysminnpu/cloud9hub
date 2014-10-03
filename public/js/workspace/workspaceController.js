@@ -1,5 +1,6 @@
 var WorkspaceCtrl = function($scope, $http, $timeout, $sce) {
   $scope.workspaces = [];
+  $scope.menuState = true;
   $scope.currentWorkspace = false; // {name: null, url: null, editing: false};
   $scope.loadingWorkspace = false;
   $scope.iframeSrc = '';
@@ -13,11 +14,21 @@ var WorkspaceCtrl = function($scope, $http, $timeout, $sce) {
       $timeout(_sendKeepAlive, 300000);
     });
   };
+  $scope.toggleMenu = function() {
+    $scope.menuState = !$scope.menuState;
+  };
   
   $scope.startEditing = function() {
     $scope.currentWorkspace.editing = true;
+    window.open($scope.currentWorkspace.url, "_blank");
+    //$scope.iframeSrc = $sce.trustAsResourceUrl($scope.currentWorkspace.url);
+  };
+
+  $scope.startEditingInPlace = function() {
+    $scope.currentWorkspace.editing = true;
     $scope.iframeSrc = $sce.trustAsResourceUrl($scope.currentWorkspace.url);
   };
+
 
   var createWorkspace = function() {
     var wsName = $scope.currentWorkspace.name;

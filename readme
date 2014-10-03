@@ -1,0 +1,25 @@
+Suppose current directory is mywork. 
+
+1. get c9hub 
+from mywork directory, git clone xxxx/c9hub.git
+
+2. get c9
+from mywork directory, git clone xxxx/c9smithio_os.git
+mv c9smithio_os c9
+
+3. run c9 independently
+from mywork/c9, ./bin/cloud9.sh -l 0.0.0.0 -w workspace_dir
+This will start a c9 server on the machine's 3131 port. You can select a port with -p port_num.
+And when you browse to the c9 server at the_machine_ip:3131, you will see your workspace opened there for your edit, build, run etc. 
+
+4. open c9 workspaces from c9hub
+from mywork/c9hub, change config.js so that a proper url is used for your case. For example, 
+on my server: it should be exports.BASE_URL = 'http://myserver.com'
+
+from mywork/c9hub, npm start. 
+This will start a c9hub server at port 3105. 
+When you browse c9hub_server_ip:3105/#/dashboard. You will see a list of existing workspaces if any, or you can create new workpsaces. Every workspace is a sub directory of mywork/c9hub/workspaces/prj. Basically, c9hub runs cloud9.sh for for every workspace so that you have one c9 server for every workspace. When you click to select a workspace, if there is no running c9 server for this workspace, c9hub will start a new c9 server for it.  
+
+Every c9 server instance runs at a port starting from 5001. So you can also access the c9 server directly from ip:5001 or ip:5002. 
+
+
