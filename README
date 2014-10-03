@@ -1,0 +1,3 @@
+install: npm install
+start: ./start-dev.sh
+access: http://server:3105/#/dashboard
