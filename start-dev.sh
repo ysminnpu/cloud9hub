@@ -1,3 +1,3 @@
-host=`hostname`
-sed 's/earl-svr07/'$host''/ config-earl-svr07.js >config.js
+ip=`hostname -I|cut -d ' ' -f 1`
+sed 's/server/'$ip''/ config-template.js >config.js
 npm start

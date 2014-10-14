@@ -12,6 +12,6 @@ exports.PERMITTED_USERS = true;
 //  cert: "/path/to/ssl.pem"
 //};
 
-exports.BASE_URL = 'http://earl-svr07.bj.intel.com'
+exports.BASE_URL = 'http://server'
 
 
